@@ -10,6 +10,8 @@ import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Textarea } from '@/components/ui/textarea'
 import { toast } from '@/components/ui/use-toast'
+import { useRouter } from 'next/navigation'
+import { supabase } from '@/utils/supabase'
 
 const formSchema = z.object({
   name: z.string().min(2, { message: 'Name must be at least 2 characters.' }),
@@ -24,10 +26,12 @@ const formSchema = z.object({
   motherTongue: z.string().min(2, { message: 'Mother tongue must be at least 2 characters.' }),
   maritalStatus: z.enum(['single', 'divorced', 'widowed'], { required_error: 'Please select a marital status.' }),
   about: z.string().min(10, { message: 'Please write at least 10 characters about yourself.' }).max(500, { message: 'Bio should not exceed 500 characters.' }),
+  password: z.string().min(6, { message: 'Password must be at least 6 characters.' }),
 })
 
 export default function RegisterPage() {
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const router = useRouter()
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -44,20 +48,47 @@ export default function RegisterPage() {
       motherTongue: '',
       maritalStatus: undefined,
       about: '',
+      password: '',
     },
   })
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsSubmitting(true)
-    // Simulate API call
-    setTimeout(() => {
-      setIsSubmitting(false)
+    console.log('singup values', values)
+    const { data, error } = await supabase.auth.signUp({
+      email: values.email,
+      password: values.password,
+      confirm: values.confirm,
+      options: {
+        data: {
+          name: values.name,
+          phone: values.phone,
+          age: values.age,
+          gender: values.gender,
+          occupation: values.occupation,
+          education: values.education,
+          location: values.location,
+          religion: values.religion,
+          motherTongue: values.motherTongue,
+          maritalStatus: values.maritalStatus,
+          about: values.about,
+        }
+      }
+    })
+
+    if (error) {
+      toast({
+        title: 'Error',
+        description: error.message,
+      })
+    } else {
       toast({
         title: 'Registration Successful',
         description: 'Your profile has been created.',
       })
-      form.reset()
-    }, 2000)
+      router.push('/profile')
+    }
+    setIsSubmitting(false)
   }
 
   return (
@@ -250,6 +281,19 @@ export default function RegisterPage() {
                 <FormDescription>
                   Write a brief description about yourself (max 500 characters).
                 </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="password"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Password</FormLabel>
+                <FormControl>
+                  <Input type="password" placeholder="Your password" {...field} />
+                </FormControl>
                 <FormMessage />
               </FormItem>
             )}

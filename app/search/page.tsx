@@ -1,24 +1,32 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Slider } from '@/components/ui/slider'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
+import { supabase } from '@/utils/supabase'
 
-// Demo data with more fields
-const profiles = [
-  { id: 1, name: 'Priya S.', age: 28, gender: 'Female', occupation: 'Software Engineer', education: 'M.Tech in Computer Science', location: 'Mumbai', religion: 'Hindu', motherTongue: 'Marathi', maritalStatus: 'Single', image: '/placeholder.svg?height=300&width=300' },
-  { id: 2, name: 'Rahul M.', age: 32, gender: 'Male', occupation: 'Doctor', education: 'MBBS, MD', location: 'Delhi', religion: 'Sikh', motherTongue: 'Punjabi', maritalStatus: 'Divorced', image: '/placeholder.svg?height=300&width=300' },
-  { id: 3, name: 'Anita K.', age: 26, gender: 'Female', occupation: 'Teacher', education: 'B.Ed', location: 'Bangalore', religion: 'Christian', motherTongue: 'Kannada', maritalStatus: 'Single', image: '/placeholder.svg?height=300&width=300' },
-  { id: 4, name: 'Vikram S.', age: 30, gender: 'Male', occupation: 'Business Analyst', education: 'MBA', location: 'Chennai', religion: 'Hindu', motherTongue: 'Tamil', maritalStatus: 'Single', image: '/placeholder.svg?height=300&width=300' },
-  { id: 5, name: 'Neha G.', age: 27, gender: 'Female', occupation: 'Marketing Manager', education: 'BBA, MBA', location: 'Pune', religion: 'Jain', motherTongue: 'Gujarati', maritalStatus: 'Single', image: '/placeholder.svg?height=300&width=300' },
-]
+interface Profile {
+  id: string
+  name: string
+  age: number
+  gender: string
+  occupation: string
+  education: string
+  location: string
+  religion: string
+  mother_tongue: string
+  marital_status: string
+  image_url: string
+}
 
 export default function SearchPage() {
+  const [profiles, setProfiles] = useState<Profile[]>([])
   const [filters, setFilters] = useState({
     gender: 'all',
     minAge: 18,
@@ -30,6 +38,22 @@ export default function SearchPage() {
   const [sortBy, setSortBy] = useState('name')
   const [searchTerm, setSearchTerm] = useState('')
 
+  useEffect(() => {
+    fetchProfiles()
+  }, [])
+
+  async function fetchProfiles() {
+    const { data, error } = await supabase
+      .from('profiles')
+      .select('*')
+
+    if (error) {
+      console.error('Error fetching profiles:', error)
+    } else {
+      setProfiles(data || [])
+    }
+  }
+
   const filteredProfiles = profiles
     .filter((profile) => {
       return (
@@ -38,11 +62,11 @@ export default function SearchPage() {
         profile.age <= filters.maxAge &&
         (filters.location === '' || profile.location.toLowerCase().includes(filters.location.toLowerCase())) &&
         (filters.religion === '' || profile.religion.toLowerCase() === filters.religion.toLowerCase()) &&
-        (filters.maritalStatus === 'all' || profile.maritalStatus.toLowerCase() === filters.maritalStatus) &&
-        (searchTerm === '' || 
-         profile.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
-         profile.occupation.toLowerCase().includes(searchTerm.toLowerCase()) ||
-         profile.education.toLowerCase().includes(searchTerm.toLowerCase()))
+        (filters.maritalStatus === 'all' || profile.marital_status.toLowerCase() === filters.maritalStatus) &&
+        (searchTerm === '' ||
+          profile.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          profile.occupation.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          profile.education.toLowerCase().includes(searchTerm.toLowerCase()))
       )
     })
     .sort((a, b) => {
@@ -120,11 +144,13 @@ export default function SearchPage() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {filteredProfiles.map((profile) => (
           <Card key={profile.id} className="overflow-hidden transition-transform hover:scale-105">
-            <Image src={profile.image} alt={profile.name} width={300} height={300} className="w-full h-64 object-cover" />
+            {/* <Image src={profile.image_url} alt={profile.name} width={300} height={300}  /> */}
+            <Image src="/placeholder.svg?height=400&width=600" alt={profile.name} width={300} height={300} className="w-full h-64 object-cover" />
+
             <CardHeader>
               <CardTitle className="text-xl font-semibold flex justify-between items-center">
                 <span>{profile.name}, {profile.age}</span>
-                <Badge variant="secondary">{profile.maritalStatus}</Badge>
+                <Badge variant="secondary">{profile.marital_status}</Badge>
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -133,10 +159,10 @@ export default function SearchPage() {
               <p className="text-gray-600 mb-2">{profile.location}</p>
               <div className="flex justify-between items-center mt-4">
                 <Badge variant="outline">{profile.religion}</Badge>
-                <Badge variant="outline">{profile.motherTongue}</Badge>
+                <Badge variant="outline">{profile.mother_tongue}</Badge>
               </div>
-              <Button className="w-full mt-4 bg-gradient-to-r from-red-500 to-pink-500 text-white hover:from-red-600 hover:to-pink-600">
-                View Profile
+              <Button asChild className="w-full mt-4 bg-gradient-to-r from-red-500 to-pink-500 text-white hover:from-red-600 hover:to-pink-600">
+                <Link href={`/profile/${profile.id}`}>View Profile</Link>
               </Button>
             </CardContent>
           </Card>

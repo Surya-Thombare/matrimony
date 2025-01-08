@@ -13,7 +13,9 @@ export default function Header() {
             <li><Link href="/register" className="hover:text-amber-200 transition-colors">Register</Link></li>
           </ul>
         </nav>
-        <Button variant="secondary" className="bg-white text-red-500 hover:bg-amber-100">Login</Button>
+        <Link href="/login">
+          <Button variant="secondary" className="bg-white text-red-500 hover:bg-amber-100">Login</Button>
+        </Link>
       </div>
     </header>
   )
