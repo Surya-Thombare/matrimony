@@ -152,14 +152,7 @@ export default function RegisterPage() {
                     <FormControl>
                       <SelectTrigger>
                         <SelectValue placeholder="Select your status" />
-                      </SelectTI'll continue the text stream from the cut-off point:
-
-<cut_off_point>
-SelectValue placeholder="Select your status" />
-                      </SelectT
-</cut_off_point>
-
-rigger>
+                      </SelectTrigger>
                     </FormControl>
                     <SelectContent>
                       <SelectItem value="single">Single</SelectItem>
@@ -248,10 +241,10 @@ rigger>
               <FormItem>
                 <FormLabel>About Me</FormLabel>
                 <FormControl>
-                  <Textarea 
-                    placeholder="Tell us about yourself" 
-                    className="resize-none" 
-                    {...field} 
+                  <Textarea
+                    placeholder="Tell us about yourself"
+                    className="resize-none"
+                    {...field}
                   />
                 </FormControl>
                 <FormDescription>
@@ -261,8 +254,8 @@ rigger>
               </FormItem>
             )}
           />
-          <Button 
-            type="submit" 
+          <Button
+            type="submit"
             className="w-full bg-gradient-to-r from-red-500 to-pink-500 text-white hover:from-red-600 hover:to-pink-600"
             disabled={isSubmitting}
           >
