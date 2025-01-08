@@ -58,7 +58,6 @@ export default function RegisterPage() {
     const { data, error } = await supabase.auth.signUp({
       email: values.email,
       password: values.password,
-      confirm: values.confirm,
       options: {
         data: {
           name: values.name,
