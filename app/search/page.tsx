@@ -145,7 +145,8 @@ export default function SearchPage() {
         {filteredProfiles.map((profile) => (
           <Card key={profile.id} className="overflow-hidden transition-transform hover:scale-105">
             {/* <Image src={profile.image_url} alt={profile.name} width={300} height={300}  /> */}
-            <Image src="/placeholder.svg?height=400&width=600" alt={profile.name} width={300} height={300} className="w-full h-64 object-cover" />
+            {/* <Image src="/placeholder.svg?height=400&width=600" alt={profile.name} width={300} height={300} className="w-full h-64 object-cover" /> */}
+            <Image src={profile?.image_url || "/placeholder.svg?height=400&width=600"} alt={profile.name} width={300} height={300} className="w-full h-64 object-cover" />
 
             <CardHeader>
               <CardTitle className="text-xl font-semibold flex justify-between items-center">
