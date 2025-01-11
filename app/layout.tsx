@@ -9,8 +9,8 @@ import { cookies } from 'next/headers'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'SoulMate - Indian Matrimonial',
-  description: 'Find your perfect match with our Indian matrimonial service',
+  title: 'International Vaishya Mahasammelan - Matrimonial Service',
+  description: 'Find your perfect match within the Vaishya community',
 }
 
 export default async function RootLayout({
@@ -36,7 +36,6 @@ export default async function RootLayout({
     )
   } catch (error) {
     console.error('Error in RootLayout:', error)
-    // Return a fallback layout or error message
     return (
       <html lang="en">
         <body className={`${inter.className} bg-amber-50 text-gray-800`}>
@@ -46,4 +45,3 @@ export default async function RootLayout({
     )
   }
 }
-
