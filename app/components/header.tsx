@@ -15,7 +15,7 @@ export default function Header() {
             className="rounded-full bg-white p-1"
           />
           <Link href="/" className="text-3xl font-bold">
-            International Vaishya Mahasammelan
+            International Vaishy Mahasammelan
           </Link>
         </div>
         <nav>

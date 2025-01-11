@@ -17,7 +17,7 @@ export default function Home() {
       <section className="bg-gradient-to-r from-red-500 to-pink-500 text-white py-20">
         <div className="container mx-auto px-4">
           <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">International Vaishya Mahasammelan</h1>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">International Vaishy Mahasammelan</h1>
             <p className="text-2xl mb-6">Matrimonial Meet - February 23, 2025</p>
             <p className="text-xl mb-8">Agrawal Dharmshala, Gandhi Road, Dehradun</p>
             <Button asChild size="lg" className="bg-white text-red-500 hover:bg-amber-100">

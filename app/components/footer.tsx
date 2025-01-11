@@ -7,7 +7,7 @@ export default function Footer() {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
-            <h3 className="text-2xl font-bold mb-4">International Vaishya Mahasammelan</h3>
+            <h3 className="text-2xl font-bold mb-4">International Vaishy Mahasammelan</h3>
             <p>Connecting families within the community</p>
             <div className="mt-4">
               <p className="flex items-center gap-2">
@@ -42,7 +42,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="mt-8 text-center">
-          <p>&copy; 2025 International Vaishya Mahasammelan. All rights reserved.</p>
+          <p>&copy; 2025 International Vaishy Mahasammelan. All rights reserved.</p>
         </div>
       </div>
     </footer>

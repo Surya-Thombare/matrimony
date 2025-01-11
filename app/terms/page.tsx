@@ -9,22 +9,22 @@ export default function Terms() {
         <CardContent className="prose max-w-none p-6">
           <ol className="list-decimal space-y-4">
             <li>
-              This youth matrimonial meet is being organized by International Vaishya Mahasammelan Uttarakhand, Mahanagar, Dehradun.
+              This youth matrimonial meet is being organized by International Vaishy Mahasammelan Uttarakhand, Mahanagar, Dehradun.
             </li>
 
             <li>
-              International Vaishya Mahasammelan Uttarakhand's responsibility is limited to only introducing the candidates.
-              All marriage-related matters must be decided among yourselves. International Vaishya Mahasammelan Uttarakhand,
+              International Vaishy Mahasammelan Uttarakhand's responsibility is limited to only introducing the candidates.
+              All marriage-related matters must be decided among yourselves. International Vaishy Mahasammelan Uttarakhand,
               Dehradun will not mediate in any form.
             </li>
 
             <li>
-              Please inform International Vaishya Mahasammelan Uttarakhand in writing or by phone after the relationship is finalized.
+              Please inform International Vaishy Mahasammelan Uttarakhand in writing or by phone after the relationship is finalized.
             </li>
 
             <li>
               Both parties should verify all information and details about the boy/girl themselves before proceeding.
-              International Vaishya Mahasammelan Uttarakhand Mahanagar Dehradun will not be responsible in this regard.
+              International Vaishy Mahasammelan Uttarakhand Mahanagar Dehradun will not be responsible in this regard.
             </li>
 
             <li>
@@ -32,7 +32,7 @@ export default function Terms() {
             </li>
 
             <li>
-              You can get financial support from International Vaishya Mahasammelan Uttarakhand for the marriage of poor girls.
+              You can get financial support from International Vaishy Mahasammelan Uttarakhand for the marriage of poor girls.
             </li>
 
             <li>
@@ -40,12 +40,12 @@ export default function Terms() {
             </li>
 
             <li>
-              International Vaishya Mahasammelan Uttarakhand will not be responsible for any kind of dispute.
+              International Vaishy Mahasammelan Uttarakhand will not be responsible for any kind of dispute.
             </li>
 
             <li>
               Please send the registration form along with registration fee of Rs. 200/- by check or draft to
-              International Vaishya Mahasammelan Uttarakhand's province office at 18-Alkhat Bazar, Dehradun Uttarakhand.
+              International Vaishy Mahasammelan Uttarakhand's province office at 18-Alkhat Bazar, Dehradun Uttarakhand.
             </li>
 
             <li>

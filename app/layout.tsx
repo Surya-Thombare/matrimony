@@ -9,8 +9,8 @@ import { cookies } from 'next/headers'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'International Vaishya Mahasammelan - Matrimonial Service',
-  description: 'Find your perfect match within the Vaishya community',
+  title: 'International Vaishy Mahasammelan - Matrimonial Service',
+  description: 'Find your perfect match within the Vaishy community',
 }
 
 export default async function RootLayout({
