@@ -1,5 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Phone, Mail, MapPin } from 'lucide-react'
+import { Phone, Mail, MapPin, CreditCard } from 'lucide-react'
+import Image from 'next/image'
 
 const committeeMembers = [
   {
@@ -73,6 +74,7 @@ export default function Contact() {
         </Card>
       </div>
 
+
       <h2 className="text-2xl font-bold mb-6">Committee Members</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {committeeMembers.map((member, index) => (
@@ -94,16 +96,39 @@ export default function Contact() {
 
       <Card className="mt-12">
         <CardHeader>
-          <CardTitle>Bank Details</CardTitle>
+          <CardTitle className="flex items-center gap-2">
+            <CreditCard className="h-5 w-5" />
+            Payment Details
+          </CardTitle>
         </CardHeader>
         <CardContent>
-          <ul className="space-y-2">
-            <li><strong>Bank:</strong> Punjab National Bank</li>
-            <li><strong>Account Number:</strong> 4211001001731114</li>
-            <li><strong>IFSC Code:</strong> PUNB0421100</li>
-          </ul>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+              <h3 className="font-semibold mb-4">Bank Transfer</h3>
+              <ul className="space-y-2">
+                <li><strong>Bank:</strong> Punjab National Bank</li>
+                <li><strong>Account Number:</strong> 4211001001731114</li>
+                <li><strong>IFSC Code:</strong> PUNB0421100</li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-semibold mb-4">UPI Payment</h3>
+              <div className="flex flex-col items-center">
+                <Image
+                  src="/paymentQR.jpg"
+                  alt="UPI QR Code"
+                  width={200}
+                  height={200}
+                  className="mb-4"
+                />
+                <p><strong>UPI ID:</strong> 9410729586m@pnb</p>
+                <p className="text-sm text-gray-600 mt-2">Helpdesk: 18001800/18002021</p>
+              </div>
+            </div>
+          </div>
         </CardContent>
       </Card>
+
     </div>
   )
 }
